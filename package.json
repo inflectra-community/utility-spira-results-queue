@@ -1,0 +1,46 @@
+{
+  "name": "spira-results-queue",
+  "version": "1.0.0",
+  "description": "RabbitMQ-based intermediary queue that mimics the Spira REST API for test result posting, reducing DB contention by controlling concurrency.",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "dev:gateway": "ts-node src/gateway/server.ts",
+    "dev:worker": "ts-node src/worker/worker.ts",
+    "start:gateway": "node dist/gateway/server.js",
+    "start:worker": "node dist/worker/worker.js",
+    "start": "concurrently \"npm run start:gateway\" \"npm run start:worker\"",
+    "dev": "concurrently \"npm run dev:gateway\" \"npm run dev:worker\"",
+    "lint": "eslint src/**/*.ts",
+    "clean": "rimraf dist"
+  },
+  "keywords": [
+    "spira",
+    "inflectra",
+    "rabbitmq",
+    "test-results",
+    "queue",
+    "automation"
+  ],
+  "author": "Inflectra Community",
+  "license": "MIT",
+  "dependencies": {
+    "@types/express-rate-limit": "^5.1.3",
+    "amqplib": "^0.10.4",
+    "axios": "^1.7.2",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "express-rate-limit": "^8.6.2",
+    "p-limit": "^3.1.0",
+    "winston": "^3.13.0"
+  },
+  "devDependencies": {
+    "@types/amqplib": "^0.10.5",
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.14.2",
+    "concurrently": "^8.2.2",
+    "rimraf": "^5.0.7",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.5"
+  }
+}
